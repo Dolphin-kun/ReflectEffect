@@ -3,8 +3,11 @@
 アイテムを反射させます。
 
 ## 使い方
-### [最新バージョンをダウンロード](https://github.com/Dolphin-kun/ReflectEffect/releases/latest)
-こちらから最新バージョンのymmeをダウンロードしてください。
+> [!NOTE]
+> [最新バージョンをダウンロード](https://github.com/Dolphin-kun/ReflectEffect/releases/latest)  
+> こちらから最新バージョンのymmeをダウンロードしてください。
+>
+> [こっち](https://ymm4-info.net/ymme/%E5%8F%8D%E5%B0%84%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3)でもダウンロードできます！
 
 ## 効果
 ### 移動速度
