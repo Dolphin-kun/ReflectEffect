@@ -32,12 +32,13 @@ namespace Reflection
 
             var speed = item.V.GetValue(frame, length, fps);
             var angle = item.Angle.GetValue(frame, length, fps) * (Math.PI / 180.0);
+            var e = item.E.GetValue(frame, length, fps) / 100.0;
 
             var vx = speed * Math.Cos(angle);
             var vy = speed * Math.Sin(angle);
 
-            double rawX = vx * frame / fps * 60.0;
-            double rawY = vy * frame / fps * 60.0;
+            double rawX = vx * frame / fps * 60d;
+            double rawY = vy * frame / fps * 60d;
 
             double posX = X + rawX;
             double posY = Y + rawY;
@@ -76,19 +77,21 @@ namespace Reflection
             {
                 double maxX = rangeWidth - collisionWidth;
                 double minX = -rangeWidth + collisionWidth;
+                int bounceX = 0;
 
                 while (posX > maxX || posX < minX)
                 {
                     if (posX > maxX)
                     {
                         double over = posX - maxX;
-                        posX = maxX - over;
+                        posX = maxX - over * e;
                     }
                     else if (posX < minX)
                     {
                         double over = minX - posX;
-                        posX = minX + over;
+                        posX = minX + over * e;
                     }
+                    bounceX++;
                 }
             }
 
@@ -101,19 +104,21 @@ namespace Reflection
             {
                 double maxY = rangeHeight - collisionHeight;
                 double minY = -rangeHeight + collisionHeight;
+                int bounceY = 0;
 
                 while (posY > maxY || posY < minY)
                 {
                     if (posY > maxY)
                     {
                         double over = posY - maxY;
-                        posY = maxY - over;
+                        posY = maxY - over * e;
                     }
                     else if (posY < minY)
                     {
                         double over = minY - posY;
-                        posY = minY + over;
+                        posY = minY + over * e;
                     }
+                    bounceY++;
                 }
             }
 
