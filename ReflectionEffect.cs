@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using YukkuriMovieMaker.Commons;
 using YukkuriMovieMaker.Controls;
 using YukkuriMovieMaker.Exo;
@@ -21,9 +21,13 @@ namespace Reflection
         [AnimationSlider("F1", "°", -90, 90)]
         public Animation Angle { get; } = new Animation(0, -3600, 3600);
 
+        [Display(GroupName = "反射", Name = "反発係数", Description = "反発係数")]
+        [AnimationSlider("F1", "%", 0, 100)]
+        public Animation E { get; } = new Animation(100, 0, 100);
+
         //範囲
         [Display(GroupName = "反射", Name = "範囲", Description = "反射する範囲")]
-        [EnumComboBox()]
+        [EnumComboBox]
         public ReflectionEnum_Range RangeEnum { get => rangeEnum; set => Set(ref rangeEnum, value); }
         ReflectionEnum_Range rangeEnum = ReflectionEnum_Range.Screen;
 
@@ -39,7 +43,7 @@ namespace Reflection
 
         //当たり判定
         [Display(GroupName = "反射", Name = "判定", Description = "当たり判定")]
-        [EnumComboBox()]
+        [EnumComboBox]
         public ReflectionEnum_Collision CollisionEnum { get => collisionEnum; set => Set(ref collisionEnum, value); }
         ReflectionEnum_Collision collisionEnum = ReflectionEnum_Collision.Bound;
 
@@ -53,6 +57,6 @@ namespace Reflection
             return new ReflectionEffectProcessor(devices, this);
         }
 
-        protected override IEnumerable<IAnimatable> GetAnimatables() => [V, Angle, CustomRangeWidth, CustomRangeHeight];
+        protected override IEnumerable<IAnimatable> GetAnimatables() => [V, Angle, E, CustomRangeWidth, CustomRangeHeight];
     }
 }
